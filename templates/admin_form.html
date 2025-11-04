@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><title>{{ 'Edit' if user else 'New' }} User</title>
+<style>body{font-family:system-ui;margin:2rem}label{display:block;margin:.5rem 0}</style>
+</head><body>
+<h1>{{ 'Edit' if user else 'New' }} User</h1>
+<form method="post" action="{{ '/admin/users/%d/update' % user.id if user else '/admin/users/new' }}">
+  <label>Name <input name="name" value="{{ user.name if user else '' }}" required></label>
+  <label>Email <input type="email" name="email" value="{{ user.email if user else '' }}" required></label>
+  <label>Password <input type="password" name="password" {{ '' if user else 'required' }}></label>
+  <button type="submit">Save</button>
+  <a href="/admin/users">Cancel</a>
+</form>
+</body></html>
